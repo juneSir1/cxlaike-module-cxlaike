@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.hzxzkj.cxlaike.module.cxlaike.dal.mysql.task.TaskMapper">
+
+  <!--
+      一般情况下，尽可能使用 Mapper 进行 CRUD 增删改查即可。
+      无法满足的场景，例如说多表关联查询，才使用 XML 编写 SQL。
+      代码生成器暂时只生成 Mapper XML 文件本身，更多推荐 MybatisX 快速开发插件来生成查询。
+      文档可见：https://www.iocoder.cn/MyBatis/x-plugins/
+   -->
+  <select id="selectAppPage"
+    resultType="net.hzxzkj.cxlaike.module.cxlaike.controller.app.task.vo.AppTaskPageRespVO">
+    select
+    ct.id as id,
+    ct.task_type as taskType,
+    ct.platform_type as platformType,
+    ct.title as title,
+    ct.start_time as startTime,
+    ct.end_time as endTime,
+    ct.task_photo as taskPhoto,
+    ct.fans_num_require as fansNumRequire,
+    min(cte.level) as minLevel,
+    max(cte.member_fee) as maxServiceFee,
+    sum(cte.total_num) as totalApplyNum,
+    sum(cte.total_num) - sum(cte.surplus_num) as currentApplyNum,
+    ct.is_shop as isShop
+    from cxlaike_task ct left join merchant_extend me on ct.merchant_user_id = me.id left join
+    cxlaike_task_ext cte on ct.id = cte.task_id
+    where ct.deleted = 0 and (ct.status = 0 or ct.status = 1)
+    <if test="title != null and title != ''">
+      AND ct.title  like concat('%',#{title},'%')
+    </if>
+    <if test="taskType != null">
+      AND ct.task_type in
+      <foreach item="item" index="index" collection="taskType"
+        open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+    <if test="levelType != null">
+      AND cte.level in
+      <foreach item="item" index="index" collection="levelType"
+        open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+    <if test="professionCode != null and professionCode != ''">
+      AND me.profession_one_code = #{professionCode}
+    </if>
+    <if test="fansRequire != null and fansRequire.size() == 2">
+      AND ct.fans_num_require BETWEEN #{fansRequire[0]} AND #{fansRequire[1]}
+    </if>
+    <if test="serviceFee != null and serviceFee.size() == 1">
+      AND cte.member_fee >= #{serviceFee[0]}
+    </if>
+    <if test="serviceFee != null and serviceFee.size() == 2">
+      AND cte.member_fee BETWEEN #{serviceFee[0]} AND #{serviceFee[1]}
+    </if>
+    <if test="area != null and area != ''">
+      AND (ct.area_require like concat('%',#{area},'%') or ct.area_require = '')
+    </if>
+    group by ct.id
+    <if test="isDesc == null or isDesc">
+      order by ct.pr_value desc,ct.start_time desc, ct.id desc
+    </if>
+    <if test="isDesc != null and !isDesc">
+      order by ct.pr_value asc, ct.start_time asc, ct.id asc
+    </if>
+  </select>
+    <select id="selectMerchantCountOfPublishTask" resultType="java.lang.Long">
+
+      SELECT
+          COUNT( DISTINCT(merchant_user_id) ) AS total
+      FROM
+          cxlaike_task
+      WHERE
+          deleted = 0
+      <if test="ids != null">
+        and merchant_user_id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+          #{id}
+        </foreach>
+      </if>
+    </select>
+
+</mapper>

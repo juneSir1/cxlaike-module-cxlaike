@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.hzxzkj.cxlaike.module.cxlaike.dal.mysql.taskmaterial.TaskMaterialMapper">
+
+    <!--
+        一般情况下，尽可能使用 Mapper 进行 CRUD 增删改查即可。
+        无法满足的场景，例如说多表关联查询，才使用 XML 编写 SQL。
+        代码生成器暂时只生成 Mapper XML 文件本身，更多推荐 MybatisX 快速开发插件来生成查询。
+        文档可见：https://www.iocoder.cn/MyBatis/x-plugins/
+     -->
+
+    <select id="selectByDownload"
+            resultType="net.hzxzkj.cxlaike.module.cxlaike.dal.dataobject.taskmaterial.TaskMaterialDO">
+        select
+        ctm.*
+        from cxlaike_task_material_download as ctmd
+        left join cxlaike_task_material as ctm on ctmd.task_material_id = ctm.id
+        where ctmd.member_user_id = #{userId} and ctm.task_id = #{taskId}
+    </select>
+</mapper>

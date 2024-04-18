@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <groupId>net.hzxzkj.boot</groupId>
+    <artifactId>cxlaike-module-cxlaike</artifactId>
+    <version>${revision}</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>cxlaike-module-cxlaike-biz</artifactId>
+  <packaging>jar</packaging>
+
+  <name>${project.artifactId}</name>
+  <description>
+    cxlaike 模块
+  </description>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.github.kwaiopen</groupId>
+      <artifactId>kwai-open-sdk</artifactId>
+      <version>1.0.6</version>
+    </dependency>
+    <dependency>
+      <groupId>net.hzxzkj.boot</groupId>
+      <artifactId>cxlaike-module-cxlaike-api</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.hzxzkj.boot</groupId>
+      <artifactId>cxlaike-module-member-api</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.hzxzkj.boot</groupId>
+      <artifactId>cxlaike-module-notify-api</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.bytedeco</groupId>
+      <artifactId>javacv</artifactId>
+      <version>1.5.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.bytedeco</groupId>
+      <artifactId>ffmpeg-platform</artifactId>
+      <version>4.2.2-1.5.3</version>
+    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.bytedeco</groupId>-->
+<!--      <artifactId>javacv-platform</artifactId>-->
+<!--      <version>1.5.3</version>-->
+<!--    </dependency>-->
+    <dependency>
+      <groupId>net.hzxzkj.boot</groupId>
+      <artifactId>cxlaike-module-pay-api</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.hzxzkj.boot</groupId>
+      <artifactId>cxlaike-module-merchant-api</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.hzxzkj.boot</groupId>
+      <artifactId>cxlaike-module-system-api</artifactId>
+      <version>${revision}</version>
+    </dependency>
+
+    <!-- Web 相关 -->
+    <dependency>
+      <groupId>net.hzxzkj.boot</groupId>
+      <artifactId>cxlaike-spring-boot-starter-security</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+
+    <!-- DB 相关 -->
+    <dependency>
+      <groupId>net.hzxzkj.boot</groupId>
+      <artifactId>cxlaike-spring-boot-starter-mybatis</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>net.hzxzkj.boot</groupId>
+      <artifactId>cxlaike-spring-boot-starter-redis</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>net.hzxzkj.boot</groupId>
+      <artifactId>cxlaike-spring-boot-starter-biz-ip</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>net.hzxzkj.boot</groupId>
+      <artifactId>cxlaike-spring-boot-starter-biz-ice</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>net.hzxzkj.boot</groupId>
+      <artifactId>cxlaike-spring-boot-starter-protection</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>net.hzxzkj.boot</groupId>
+        <artifactId>cxlaike-spring-boot-starter-biz-operatelog</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>net.hzxzkj.boot</groupId>
+      <artifactId>cxlaike-spring-boot-starter-biz-weixin</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>net.hzxzkj.boot</groupId>
+      <artifactId>cxlaike-spring-boot-starter-excel</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>net.hzxzkj.boot</groupId>
+      <artifactId>cxlaike-spring-boot-starter-biz-tenant</artifactId>
+    </dependency>
+    <!-- Test 测试相关 -->
+    <dependency>
+        <groupId>net.hzxzkj.boot</groupId>
+        <artifactId>cxlaike-spring-boot-starter-test</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt</artifactId>
+      <version>0.9.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.binarywang</groupId>
+      <artifactId>weixin-java-pay</artifactId>
+      <version>4.5.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-mock</artifactId>
+      <version>2.0.8</version>
+    </dependency>
+
+
+
+  </dependencies>
+
+</project>

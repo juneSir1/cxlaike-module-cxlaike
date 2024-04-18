@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.hzxzkj.cxlaike.module.cxlaike.dal.mysql.memberdybind.MemberDyBindMapper">
+
+    <!--
+        一般情况下，尽可能使用 Mapper 进行 CRUD 增删改查即可。
+        无法满足的场景，例如说多表关联查询，才使用 XML 编写 SQL。
+        代码生成器暂时只生成 Mapper XML 文件本身，更多推荐 MybatisX 快速开发插件来生成查询。
+        文档可见：https://www.iocoder.cn/MyBatis/x-plugins/
+     -->
+
+
+    <select id="selectListForAudit"
+            resultType="net.hzxzkj.cxlaike.module.cxlaike.controller.admin.memberdybind.vo.MemberDyBindPageRespVO">
+
+        select
+        mdb.id,
+        mdb.dy_user_id,
+        mdb.dy_nickname,
+        mu.mobile,
+        mdb.dy_home_page,
+        mdb.dy_grade_url,
+        mdb.dy_grade,
+        mdb.dy_fans_count,
+        mdb.dy_give_like_count,
+        mdb.dy_works_count,
+        mdb.dy_audit_status,
+        mdt.dy_accredit_status,
+        mdt.dy_accredit_time
+        from member_dy_bind as mdb
+        left join member_dy_token as mdt on mdb.id = mdt.id and mdt.deleted = 0
+        left join member_user as mu on mu.id = mdb.member_id and mu.deleted = 0
+        where mdb.dy_audit_status in (1,2,3) and mdb.deleted = 0 and mdb.user_type = 1
+        <if test="form.dyNickname != null and form.dyNickname != ''">
+            AND (mdb.dy_user_id like CONCAT('%',#{form.dyNickname},'%') or mdb.dy_nickname like CONCAT('%',#{form.dyNickname},'%'))
+        </if>
+        <if test="form.accreditTimeStart != null and form.accreditTimeEnd != null">
+            AND mdt.dy_accredit_time BETWEEN #{form.accreditTimeStart} and #{form.accreditTimeEnd}
+        </if>
+        <if test="form.mobile != null and form.mobile != ''">
+            AND mu.mobile like CONCAT('%',#{form.mobile},'%')
+        </if>
+        <if test="form.auditStatus != null">
+            AND mdb.dy_audit_status = #{form.auditStatus}
+        </if>
+        order by mdt.dy_accredit_time desc
+    </select>
+</mapper>
