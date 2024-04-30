@@ -15,6 +15,7 @@
 ## 简介
 
 本项项目是短视频矩阵混剪系统，分钟级支持上千条不重复视频生成，矩阵目前支持抖音和快手平台多账号管理及分发，如下是整个工程模块
+
 ![image](https://github.com/juneSir1/cxlaike-module-cxlaike/assets/22173263/0fc5db65-63b2-4967-8f2a-bf7e615af5ce)
 
 ## 性能
