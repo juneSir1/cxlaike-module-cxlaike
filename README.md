@@ -48,4 +48,6 @@
 贴牌或者源码合作，有诚意者加v请备注说明：短视频矩阵源码合作，否则可能不通过，还请理解。
 
 微信:xiaoxiang8842
+![c9c9545fe79bea26a15d9fa644b77cb4](https://github.com/user-attachments/assets/8a8d66a5-53eb-4cbc-a3f2-3c2aa7c765cb)
+
 
