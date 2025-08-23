@@ -17,7 +17,7 @@
 
   <name>${project.artifactId}</name>
   <description>
-    cxlaike 模块
+    jsagent 模块
   </description>
 
 </project>
